@@ -9,7 +9,7 @@
 #define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 #define DarkGreyColor RGB(0,0,0)
 #define RedColor RGB(253,0,17)
-#define DefaultBoldFont [UIFont boldSystemFontOfSize:17]
+#define DefaultBoldFont [UIFont boldSystemFontOfSize:15]
 
 #define kPTKViewPlaceholderViewAnimationDuration 0.25
 
@@ -82,13 +82,11 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 290, 46);
     self.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.05];
     [self.layer setCornerRadius:3.f];
-    [self.layer setBorderWidth:1.f];
-    [self.layer setBorderColor:[[UIColor colorWithWhite:0.2 alpha:0.5f] CGColor]];
     
-//    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
 //    backgroundImageView.image = [[UIImage imageNamed:@"textfield"]
 //            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 8, 0, 8)];
-//    [self addSubview:backgroundImageView];
+    [self addSubview:backgroundImageView];
 
     self.innerView = [[UIView alloc] initWithFrame:CGRectMake(40, 12, self.frame.size.width - 40, 20)];
     self.innerView.clipsToBounds = YES;
@@ -100,9 +98,9 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
 
     [self.innerView addSubview:self.cardNumberField];
 
-//    UIImageView *gradientImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 34)];
+    UIImageView *gradientImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 34)];
 //    gradientImageView.image = [UIImage imageNamed:@"gradient"];
-//    [self.innerView addSubview:gradientImageView];
+    [self.innerView addSubview:gradientImageView];
 
 //    self.opaqueOverGradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 9, 34)];
 //    self.opaqueOverGradientView.backgroundColor = [UIColor colorWithRed:0.9686 green:0.9686
@@ -137,8 +135,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
     self.cardNumberField.textColor = [UIColor colorWithWhite:0.2 alpha:1.f];
     //self.cardNumberField.textColor = DarkGreyColor;
-    self.cardNumberField.font = [UIFont boldSystemFontOfSize:15];
-    //self.cardNumberField.font = DefaultBoldFont;
+    self.cardNumberField.font = DefaultBoldFont;
 
     [self.cardNumberField.layer setMasksToBounds:YES];
 }
@@ -264,7 +261,7 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     lastGroupSize = [self.cardNumber.lastGroup sizeWithAttributes:attributes];
 #endif
 
-    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width);
+    CGFloat frameX = self.cardNumberField.frame.origin.x - (cardNumberSize.width - lastGroupSize.width + 6);
 
     [UIView animateWithDuration:0.05 delay:0.35 options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
