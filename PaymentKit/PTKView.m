@@ -606,4 +606,15 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     return [self.firstResponderField resignFirstResponder];
 }
 
+#pragma mark - additions
+- (void)setTextFieldCardNumber:(NSString*)cardNumberString
+{
+    NSString *resultString = [PTKTextField textByRemovingUselessSpacesFromString:cardNumberString];
+    PTKCardNumber *cardNumber = [PTKCardNumber cardNumberWithString:resultString];
+    
+    self.cardNumberField.text = [cardNumber formattedString];
+
+    [self setPlaceholderToCardType];
+}
+
 @end

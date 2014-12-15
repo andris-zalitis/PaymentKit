@@ -37,8 +37,22 @@
     self.paymentView.delegate = self;
     
     [self.view addSubview:self.paymentView];
+    
+    UIButton *fillButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 80, 290, 50)];
+    [fillButton.layer setCornerRadius:3.f];
+    [fillButton.layer setBorderColor:[[UIColor colorWithWhite:0.2 alpha:0.2f] CGColor]];
+    [fillButton.layer setBorderWidth:1.f];
+    [fillButton setBackgroundColor:[UIColor whiteColor]];
+    [fillButton setTitleColor:[UIColor colorWithWhite:0.2 alpha:1.f] forState:UIControlStateNormal];
+    [fillButton setTitle:@"Fill Card Number Field" forState:UIControlStateNormal];
+    [fillButton addTarget:self action:@selector(fill) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:fillButton];
 }
 
+- (void)fill
+{
+    [self.paymentView setTextFieldCardNumber:@"4111111111111111"];
+}
 
 - (void) paymentView:(PTKView *)paymentView withCard:(PTKCard *)card isValid:(BOOL)valid
 {
