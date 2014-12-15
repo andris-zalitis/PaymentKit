@@ -615,6 +615,8 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     self.cardNumberField.text = [cardNumber formattedString];
 
     [self setPlaceholderToCardType];
+    if (_isInitialState)
+        [self performSelector:@selector(stateMeta) withObject:nil afterDelay:0.3];
 }
 
 @end
