@@ -42,7 +42,7 @@
     [fillButton.layer setCornerRadius:3.f];
     [fillButton.layer setBorderColor:[[UIColor colorWithWhite:0.2 alpha:0.2f] CGColor]];
     [fillButton.layer setBorderWidth:1.f];
-    [fillButton setBackgroundColor:[UIColor whiteColor]];
+    [fillButton setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1]];
     [fillButton setTitleColor:[UIColor colorWithWhite:0.2 alpha:1.f] forState:UIControlStateNormal];
     [fillButton setTitle:@"Fill Card Number Field" forState:UIControlStateNormal];
     [fillButton addTarget:self action:@selector(fill) forControlEvents:UIControlEventTouchUpInside];
