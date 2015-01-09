@@ -23,6 +23,8 @@
 
 @interface PTKView : UIView
 
+- (id)initWithFrame:(CGRect)frame transparentBackground:(BOOL)transparentBackground;
+
 - (void)setTextFieldCardNumber:(NSString*)cardNumber;
 - (BOOL)isValid;
 
@@ -40,5 +42,7 @@
 @property IBOutlet UIImageView *placeholderView;
 @property (nonatomic, weak) id <PTKViewDelegate> delegate;
 @property (readonly) PTKCard *card;
+
+@property (nonatomic, assign) BOOL transparentBackground;
 
 @end
