@@ -436,8 +436,16 @@ static NSString *const kPTKOldLocalizedStringsTableName = @"STPaymentLocalizable
     resultString = [PTKTextField textByRemovingUselessSpacesFromString:resultString];
     PTKCardNumber *cardNumber = [PTKCardNumber cardNumberWithString:resultString];
 
-    if (![cardNumber isPartiallyValid])
+    // if the card number after the replacementString would be too long, check if existing number is good and if so - move on.
+    // code from https://github.com/insanoid/PaymentKit/commit/2604835444618326e2eaefd0aea140c6b47281dc
+    if (![cardNumber isPartiallyValid]) {
+        NSString *existingString = [PTKTextField textByRemovingUselessSpacesFromString:self.cardNumberField.text];
+        PTKCardNumber *existingCardNumber = [PTKCardNumber cardNumberWithString:existingString];
+        if ([existingCardNumber isValid]) {
+            [self stateMeta];
+        }
         return NO;
+    }
 
     if (replacementString.length > 0) {
         self.cardNumberField.text = [cardNumber formattedStringWithTrail];
